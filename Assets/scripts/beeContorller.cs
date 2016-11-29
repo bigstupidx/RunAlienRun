@@ -14,34 +14,34 @@ public class beeContorller : MonoBehaviour
 
     public bool grounded;
     public LayerMask whatIsGrounded;
-    public Transform groundCheck;
+    //public Transform groundCheck;
 
     private bool beeHurtTime = false; 
 
     private int jumpsLeft = 2;
 
     //audio thing
-    public AudioSource jumpSfx;
-    public AudioSource deathSfx;
+    //public AudioSource jumpSfx;
+    //public AudioSource deathSfx;
 
 
-    public float jumpTime;
-    public float jumpTimerCounter;
-    public float speedMultiplayer;
-    public float speedIncreaseMilestone;
+    //public float jumpTime;
+   // public float jumpTimerCounter;
+   // public float speedMultiplayer;
+   // public float speedIncreaseMilestone;
     public float alineJumpForce = 500f;
-    public float groundCheckRadius;
+    //public float groundCheckRadius;
     public float moveSpeed;
 
-    private float startTime;
-    private float moveSpeedStore;
-    private float speedMilestoneCountStore;
-    private float speedIncreaseMilestoneStore;
-    private float speedMilestoneCount;
-    private float alienHurtTime = -1;
+    //private float startTime;
+  //  private float moveSpeedStore;
+   // private float speedMilestoneCountStore;
+  //  private float speedIncreaseMilestoneStore;
+  //  private float speedMilestoneCount;
+  //  private float alienHurtTime = -1;
 
-    public GameManagaer theGameManager;
-    public ScoreManager theScoreManager;
+    //public GameManagaer theGameManager;
+    //public ScoreManager theScoreManager;
 
 
     // Use this for initialization
@@ -51,17 +51,17 @@ public class beeContorller : MonoBehaviour
         myAnim = GetComponent<Animator>();
        //myCollider = GetComponent<Collider2D>();
 
-        jumpTimerCounter = jumpTime;
+        //jumpTimerCounter = jumpTime;
 
-        startTime = Time.time;
+      //  startTime = Time.time;
 
-        speedMilestoneCount = speedIncreaseMilestone;
+       // speedMilestoneCount = speedIncreaseMilestone;
 
-        theScoreManager = FindObjectOfType<ScoreManager>();
+        //theScoreManager = FindObjectOfType<ScoreManager>();
 
-        moveSpeedStore = moveSpeed;
-        speedMilestoneCountStore = speedMilestoneCount;
-        speedIncreaseMilestoneStore = speedIncreaseMilestone;
+     //   moveSpeedStore = moveSpeed;
+      //  speedMilestoneCountStore = speedMilestoneCount;
+       // speedIncreaseMilestoneStore = speedIncreaseMilestone;
     }
 
     // Update is called once per frame
@@ -76,17 +76,17 @@ public class beeContorller : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
 
-        if (alienHurtTime == -1)
+     //   if (alienHurtTime == -1)
         {
-            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGrounded);
+          //  grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGrounded);
 
-            if (transform.position.x > speedMilestoneCount)
+         //   if (transform.position.x > speedMilestoneCount)
 
             {
-                speedMilestoneCount += speedIncreaseMilestone;
+          //      speedMilestoneCount += speedIncreaseMilestone;
 
-                speedIncreaseMilestone += speedIncreaseMilestone * speedMultiplayer;
-                moveSpeed = moveSpeed * speedMultiplayer;
+           //     speedIncreaseMilestone += speedIncreaseMilestone * speedMultiplayer;
+            //    moveSpeed = moveSpeed * speedMultiplayer;
             }
 
             myRigidBody.velocity = new Vector2(moveSpeed, myRigidBody.velocity.y);
@@ -109,21 +109,21 @@ public class beeContorller : MonoBehaviour
 
                 if (Input.GetKey (KeyCode.Space) || Input.GetMouseButton(0))
                 {
-                    if (jumpTimerCounter > 0)
+                //    if (jumpTimerCounter > 0)
                     {
                         myRigidBody.velocity = new Vector2(myRigidBody.velocity.x , alineJumpForce);
-                        jumpTimerCounter -= Time.deltaTime;
+                    //    jumpTimerCounter -= Time.deltaTime;
                     }
                 }
 
                 if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonUp(0))
                 {
-                    jumpTimerCounter = 0;
+                  //  jumpTimerCounter = 0;
                 }
 
                 if(grounded)
                 {
-                    jumpTimerCounter = jumpTime;
+                  //  jumpTimerCounter = jumpTime;
                 }
 
                 if(transform.position.y < -1)
@@ -134,9 +134,9 @@ public class beeContorller : MonoBehaviour
 
                 jumpsLeft--;
 
-                jumpSfx.Play();
+                //jumpSfx.Play();
             }
-            myAnim.SetFloat("vVelocity", myRigidBody.velocity.y);
+           myAnim.SetFloat("vVelocity", myRigidBody.velocity.y);
 
          }
 }
@@ -155,13 +155,13 @@ public class beeContorller : MonoBehaviour
                 moveLefter.enabled = false;
             }
 
-            alienHurtTime = Time.time;
-            myAnim.SetBool("alienHurt", true);
+          //  alienHurtTime = Time.time;
+          //  myAnim.SetBool("alienHurt", true);
             myRigidBody.velocity = Vector2.zero;
             myRigidBody.AddForce(transform.up * alineJumpForce);
             //myCollider.enabled = false;
 
-            deathSfx.Play();
+            //deathSfx.Play();
 
         }
         else if (other.collider.gameObject.tag ==("Ground"))
@@ -171,10 +171,10 @@ public class beeContorller : MonoBehaviour
 
         if(other.gameObject.tag == "killbox")
         {
-            moveSpeed = moveSpeedStore;
-            theGameManager.RestartGame();
-            speedMilestoneCount = speedMilestoneCountStore;
-            speedIncreaseMilestone = speedIncreaseMilestoneStore;
+           // moveSpeed = moveSpeedStore;
+            //theGameManager.RestartGame();
+           // speedMilestoneCount = speedMilestoneCountStore;
+           // speedIncreaseMilestone = speedIncreaseMilestoneStore;
         }
      }
 

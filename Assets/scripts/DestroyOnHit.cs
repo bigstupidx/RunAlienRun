@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyOnHit : MonoBehaviour {
+public class DestroyOnHit : MonoBehaviour
+{
 
-    public GameObject platformDestructionPoint;
+    //public GameObject platformDestructionPoint;
 
 
     void Start()
     {
-        platformDestructionPoint = GameObject.Find("platformDestructionPoint");
+        //platformDestructionPoint = GameObject.Find("platformDestructionPoint");
     }
 
     void Update()
     {
-        if (transform.position.x < platformDestructionPoint.transform.position.x)
+        //if (transform.position.x < platformDestructionPoint.transform.position.x)
         {
             //Destroy(gameObject);
 
-            gameObject.SetActive(false);
+            //  gameObject.SetActive(false);
         }
     }
-
 }

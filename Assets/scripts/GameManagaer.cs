@@ -27,7 +27,7 @@ public class GameManagaer : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        platformStartPoint = platformGeneretor.position;
+       // platformStartPoint = platformGeneretor.position;
         playerStartPoint = thePlayer.transform.position;
 
         theScoreManager = FindObjectOfType<ScoreManager>();
