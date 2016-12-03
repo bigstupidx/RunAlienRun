@@ -12,31 +12,31 @@ public class PlatformsGenretor : MonoBehaviour {
     public float distanceBetweenMin;
     public float distanceBetweenMax;
 
-    public ObjectPooler[] theObjectPools;
+    //public ObjectPooler[] theObjectPools;
 
     private int platformSelector;
-    //public GameObject[] thePaltforms;
+    public GameObject[] thePaltforms;
     public float[] platformWidths;
 
-    private float minHeight;
-    public Transform maxHeightPoint;
-    private float maxHeight;
-    public float maxHeightChange;
-    private float heightChange;
+    //private float minHeight;
+   // public Transform maxHeightPoint;
+   // private float maxHeight;
+   // public float maxHeightChange;
+   // private float heightChange;
 
     // Use this for initialization
     void Start () {
-        //platformWidth = thePaltform.GetComponent<BoxCollider2D>().size.x;
+       // platformWidth = thePaltform.GetComponent<BoxCollider2D>().size.x;
 
-        platformWidths = new float[theObjectPools.Length];
+        platformWidths = new float[thePaltforms.Length];
 
-        for(int i = 0; i < theObjectPools.Length; i++)
+        for(int i = 0; i < thePaltforms.Length; i++)
         {
-            platformWidths[i] = theObjectPools[i].pooledObject.GetComponent<BoxCollider2D>().size.x;
+            platformWidths[i] = thePaltforms[i].GetComponent<BoxCollider2D>().size.x;
         }
 
-        minHeight = transform.position.y;
-        maxHeight = maxHeightPoint.position.y;
+       // minHeight = transform.position.y;
+       // maxHeight = maxHeightPoint.position.y;
 	}
 	
 	// Update is called once per frame
@@ -46,30 +46,30 @@ public class PlatformsGenretor : MonoBehaviour {
         {
             distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
 
-            platformSelector = Random.Range(0, theObjectPools.Length);
+            platformSelector = Random.Range(0, thePaltforms.Length);
 
-            heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+         //   heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
 
-            if(heightChange > maxHeight)
-            {
-                heightChange = maxHeight;
-            }
-            else if (heightChange < minHeight)
-            {
-                heightChange = minHeight;
-            }
+          //  if(heightChange > maxHeight)
+         //   {
+         //       heightChange = maxHeight;
+        //    }
+         //   else if (heightChange < minHeight)
+         //   {
+       //         heightChange = minHeight;
+         //   }
 
-            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
+            transform.position = new Vector3(transform.position.x + platformWidths[platformSelector] + distanceBetween, transform.position.y, transform.position.z);
 
-            //Instantiate(/*thePaltform*/ thePaltforms[platformSelector], transform.position, transform.rotation);
+            Instantiate(/*thePaltform*/thePaltforms[platformSelector] , transform.position, transform.rotation);
 
-            GameObject newPlatform =  theObjectPools[platformSelector].GetPooledObject();
+            /*GameObject newPlatform =  theObjectPools[platformSelector].GetPooledObject();
 
             newPlatform.transform.position = transform.position;
             newPlatform.transform.rotation = transform.rotation;
-            newPlatform.SetActive(true);
+            newPlatform.SetActive(true);*/
 
-            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
+          //  transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
         }
 	}
 }
