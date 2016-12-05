@@ -16,7 +16,7 @@ public class GameManagaer : MonoBehaviour {
 
     private ScoreManager theScoreManager;
 
-    public DeathMenu theDeathScreen;
+    //public DeathMenu theDeathScreen;
 
 
     private void Awake()
@@ -40,15 +40,17 @@ public class GameManagaer : MonoBehaviour {
 
     public void RestartGame()
     {
-        theScoreManager.scoreIncreasing = false;
-        thePlayer.gameObject.SetActive(false);
 
-        theDeathScreen.gameObject.SetActive(true);
+        StartCoroutine("RestartGameCo");
+        //theScoreManager.scoreIncreasing = false;
+        //thePlayer.gameObject.SetActive(false);
+
+        //theDeathScreen.gameObject.SetActive(true);
 
         //StartCoroutine("RestartGameCo");
     }
 
-    public void Reset()
+    /*public void Reset()
     {
         platformList = FindObjectsOfType<DestroyOnHit>();
         for (int i = 0; i < platformList.Length; i++)
@@ -62,9 +64,9 @@ public class GameManagaer : MonoBehaviour {
 
         theScoreManager.scoreCount = 0;
         theScoreManager.scoreIncreasing = true;
-    }
+    }*/
 
-    /*public IEnumerator RestartGameCo()
+    public IEnumerator RestartGameCo()
     {
         theScoreManager.scoreIncreasing = false;
         thePlayer.gameObject.SetActive(false);
@@ -74,16 +76,16 @@ public class GameManagaer : MonoBehaviour {
         {
             platformList[i].gameObject.SetActive(false);
         }
-
+        
         thePlayer.transform.position = playerStartPoint;
         platformGeneretor.position = platformStartPoint;
         thePlayer.gameObject.SetActive(true);
 
         theScoreManager.scoreCount = 0;
         theScoreManager.scoreIncreasing = true;
-    }*/
+    }
 
-    public void LoseLP()
+    /*public void LoseLP()
     {
         Death();
     }
@@ -91,5 +93,5 @@ public class GameManagaer : MonoBehaviour {
     public void Death()
     {
         Debug.Log("Death");
-    }
+    }*/
 }
