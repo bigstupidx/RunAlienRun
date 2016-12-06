@@ -150,23 +150,17 @@ public class beeContorller : MonoBehaviour
             moveSpeed = moveSpeedStore;
             speedMilestoneCount = speedMilestoneCountStore;
             speedIncreaseMilestone = speedIncreaseMilestone;
-        }
-
-          //  alienHurtTime = Time.time;
-          //  myAnim.SetBool("alienHurt", true);
-           // myRigidBody.velocity = Vector2.zero;
-           // myRigidBody.AddForce(transform.up * alineJumpForce);
-            //myCollider.enabled = false;
-
-            //deathSfx.Play();
+            deathSfx.Play();
 
         }
 
-       
-           // moveSpeed = moveSpeedStore;
-            //theGameManager.RestartGame();
-           // speedMilestoneCount = speedMilestoneCountStore;
-           // speedIncreaseMilestone = speedIncreaseMilestoneStore;
+        //  alienHurtTime = Time.time;
+        //  myAnim.SetBool("alienHurt", true);
+        // myRigidBody.velocity = Vector2.zero;
+        // myRigidBody.AddForce(transform.up * alineJumpForce);
+        //myCollider.enabled = false;
+
+    }
         }
      
 

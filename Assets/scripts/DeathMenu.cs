@@ -13,7 +13,6 @@ public class DeathMenu : MonoBehaviour {
 
     public void RestartGame()
     {
-        // Reload the level
         Application.LoadLevel("Game");
     }
 

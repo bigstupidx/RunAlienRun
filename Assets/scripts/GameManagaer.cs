@@ -16,18 +16,14 @@ public class GameManagaer : MonoBehaviour {
 
     private ScoreManager theScoreManager;
 
-    //public DeathMenu theDeathScreen;
+    public DeathMenu theDeathScreen;
 
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     // Use this for initialization
     void Start ()
     {
-       // platformStartPoint = platformGeneretor.position;
+        platformStartPoint = platformGeneretor.position;
         playerStartPoint = thePlayer.transform.position;
 
         theScoreManager = FindObjectOfType<ScoreManager>();
@@ -41,17 +37,17 @@ public class GameManagaer : MonoBehaviour {
     public void RestartGame()
     {
 
-        StartCoroutine("RestartGameCo");
-        //theScoreManager.scoreIncreasing = false;
-        //thePlayer.gameObject.SetActive(false);
+        theScoreManager.scoreIncreasing = false;
+        thePlayer.gameObject.SetActive(false);
 
-        //theDeathScreen.gameObject.SetActive(true);
+        theDeathScreen.gameObject.SetActive(true);
 
         //StartCoroutine("RestartGameCo");
     }
 
-    /*public void Reset()
+    public void Reset()
     {
+        theDeathScreen.gameObject.SetActive(false);
         platformList = FindObjectsOfType<DestroyOnHit>();
         for (int i = 0; i < platformList.Length; i++)
         {
@@ -64,9 +60,9 @@ public class GameManagaer : MonoBehaviour {
 
         theScoreManager.scoreCount = 0;
         theScoreManager.scoreIncreasing = true;
-    }*/
+    }
 
-    public IEnumerator RestartGameCo()
+    /*public IEnumerator RestartGameCo()
     {
         theScoreManager.scoreIncreasing = false;
         thePlayer.gameObject.SetActive(false);
@@ -83,15 +79,5 @@ public class GameManagaer : MonoBehaviour {
 
         theScoreManager.scoreCount = 0;
         theScoreManager.scoreIncreasing = true;
-    }
-
-    /*public void LoseLP()
-    {
-        Death();
-    }
-
-    public void Death()
-    {
-        Debug.Log("Death");
     }*/
 }

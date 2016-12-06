@@ -5,36 +5,31 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PausePanel : MonoBehaviour
-{
+{ 
 
-    public GameObject pauseButton, pausePanel;
-
-    private bool isPaused;
-
-
-    public void OnPause()
-    {
-        pausePanel.SetActive(true);
-        pauseButton.SetActive(false);
-        Time.timeScale = 0;
-    }
-
-    public void OnUnPause()
-    {
-        pausePanel.SetActive(false);
-        pauseButton.SetActive(true);
-        Time.timeScale = 1;
-    }
+    public GameObject pauseMenu;
 
     public void PauseGame()
     {
-        pausePanel.SetActive(!pausePanel.activeSelf);
-        isPaused = pausePanel.activeSelf;
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
     }
 
-    public void NewGame()
+    public void ResumeGame()
     {
-        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+    }
+
+    public void ExitToMenu()
+    {
+        Time.timeScale = 1f;
+        Application.LoadLevel("Tittle");
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
         Application.LoadLevel("Game");
     }
 
