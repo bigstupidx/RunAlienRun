@@ -24,6 +24,9 @@ public class PlatformsGenretor : MonoBehaviour {
     public float maxHeightChange;
     private float heightChange;
 
+    public float randomSpikeThreshold;
+    public ObjectPooler spikePool;
+
     // Use this for initialization
     void Start () {
        // platformWidth = thePaltform.GetComponent<BoxCollider2D>().size.x;
@@ -68,6 +71,19 @@ public class PlatformsGenretor : MonoBehaviour {
             newPlatform.transform.position = transform.position;
             newPlatform.transform.rotation = transform.rotation;
             newPlatform.SetActive(true);
+
+            if(Random.Range(0f,100f) < randomSpikeThreshold)
+            {
+                GameObject newSpike = spikePool.GetPooledObject();
+
+                float spikeXPosition = Random.Range(-platformWidths[platformSelector] / 2f + 1f, platformWidths[platformSelector] / 2f - 1f);
+
+                Vector3 spikePosition = new Vector3(spikeXPosition , 0.5f, 0f);
+
+                newSpike.transform.position = transform.position + spikePosition;
+                newSpike.transform.rotation = transform.rotation;
+                newSpike.SetActive(true);
+            }
 
            transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
         }
