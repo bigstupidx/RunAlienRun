@@ -22,7 +22,7 @@ public class PreFabSpawner : MonoBehaviour {
 	    if(Time.time > nextSpawn)
         {
             Instantiate(prefabSpawn, transform.position, Quaternion.identity);
-            //nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
+
 
             float curvePos = (Time.time - startTime) / curveLengthInSeconds;
             if(curvePos > 1f)

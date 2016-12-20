@@ -41,8 +41,6 @@ public class GameManagaer : MonoBehaviour {
         thePlayer.gameObject.SetActive(false);
 
         theDeathScreen.gameObject.SetActive(true);
-
-        //StartCoroutine("RestartGameCo");
     }
 
     public void Reset()
@@ -61,23 +59,4 @@ public class GameManagaer : MonoBehaviour {
         theScoreManager.scoreCount = 0;
         theScoreManager.scoreIncreasing = true;
     }
-
-    /*public IEnumerator RestartGameCo()
-    {
-        theScoreManager.scoreIncreasing = false;
-        thePlayer.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
-        platformList = FindObjectsOfType<DestroyOnHit>();
-        for(int i = 0; i < platformList.Length; i++)
-        {
-            platformList[i].gameObject.SetActive(false);
-        }
-        
-        thePlayer.transform.position = playerStartPoint;
-        platformGeneretor.position = platformStartPoint;
-        thePlayer.gameObject.SetActive(true);
-
-        theScoreManager.scoreCount = 0;
-        theScoreManager.scoreIncreasing = true;
-    }*/
 }

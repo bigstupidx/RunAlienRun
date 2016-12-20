@@ -24,34 +24,12 @@ public class PausePanel : MonoBehaviour
     public void ExitToMenu()
     {
         Time.timeScale = 1f;
-        Application.LoadLevel("Tittle");
+        SceneManager.LoadScene("Title");
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        Application.LoadLevel("Game");
+        SceneManager.LoadScene("Game");
     }
-
-    /*public void ShowAd()
-    {
-        if (Advertisement.IsReady())
-        {
-            Advertisement.Show("video", new ShowOptions() { resultCallback = HandleAdResult });
-        }
-    }/*
-
-   /* private void HandleAdResult(ShowResult result)
-    {
-        switch (result)
-        {
-            case ShowResult.Skipped:
-                Debug.Log("Player did not fully watch the ad");
-                break;
-
-            case ShowResult.Failed:
-                Debug.Log("Player failed to launch the ad");
-                break;
-        }
-    }*/
 }

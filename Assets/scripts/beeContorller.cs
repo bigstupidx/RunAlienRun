@@ -10,13 +10,15 @@ public class beeContorller : MonoBehaviour
 
     private Rigidbody2D myRigidBody;
     private Animator myAnim;
-    //private Collider2D myCollider;
+    private Collider2D myCollider;
 
     public bool grounded;
     public LayerMask whatIsGrounded;
     public Transform groundCheck;
 
-    private bool beeHurtTime = false; 
+    private bool beeHurtTime = false;
+    private bool stoppedJumping;
+    private bool doubleJumped;
 
     private int jumpsLeft = 2;
 
@@ -49,19 +51,20 @@ public class beeContorller : MonoBehaviour
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
-       //myCollider = GetComponent<Collider2D>();
+        myCollider = GetComponent<Collider2D>();
 
         jumpTimerCounter = jumpTime;
 
-      //  startTime = Time.time;
+
 
         speedMilestoneCount = speedIncreaseMilestone;
 
-        //theScoreManager = FindObjectOfType<ScoreManager>();
 
         moveSpeedStore = moveSpeed;
         speedMilestoneCountStore = speedMilestoneCount;
         speedIncreaseMilestoneStore = speedIncreaseMilestone;
+
+        stoppedJumping = true;
     }
 
     // Update is called once per frame
@@ -71,12 +74,7 @@ public class beeContorller : MonoBehaviour
         if (isPaused)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Title");
-        }
 
-        if (alienHurtTime == -1)
         {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGrounded);
 
@@ -91,46 +89,45 @@ public class beeContorller : MonoBehaviour
 
             myRigidBody.velocity = new Vector2(moveSpeed, myRigidBody.velocity.y);
 
-            if (Input.GetButtonUp("Jump") || Input.GetButtonUp("Fire1") && jumpsLeft > 0)
             {
-                if (myRigidBody.velocity.y < 0)
-                {
-                    myRigidBody.velocity = Vector2.zero;
-                }
 
-                if (jumpsLeft == 1)
-                {
-                    myRigidBody.AddForce(transform.up * alineJumpForce * 0.75f);
-                }
-                else
-                {
-                    myRigidBody.AddForce(transform.up * alineJumpForce);
-                }
 
-                if (Input.GetKey (KeyCode.Space) || Input.GetMouseButton(0))
+                if (Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    if (jumpTimerCounter > 0)
+                    if (grounded)
                     {
                         myRigidBody.velocity = new Vector2(myRigidBody.velocity.x , alineJumpForce);
-                        jumpTimerCounter -= Time.deltaTime;
+                        stoppedJumping = false;
+                    }
+
+                    if(!grounded && doubleJumped )
+                    {
+                        myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, alineJumpForce);
+                        stoppedJumping = false;
+                        doubleJumped = false;
                     }
                 }
 
-                if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonUp(0))
+                if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) && !stoppedJumping)
+                {
+                    if (jumpTimerCounter > 0)
+                    {
+                        myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, alineJumpForce);
+                        jumpTimerCounter -= Time.deltaTime;
+                    } 
+                }
+
+                if(Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
                 {
                     jumpTimerCounter = 0;
+                    stoppedJumping = true;
                 }
 
                 if(grounded)
                 {
                     jumpTimerCounter = jumpTime;
+                    doubleJumped = true;
                 }
-
-                /*if(transform.position.y < -1)
-                {
-                    if (!beeHurtTime)
-                        GameManagaer.Instance.LoseLP();
-                }*/
 
                 jumpsLeft--;
 
@@ -153,12 +150,6 @@ public class beeContorller : MonoBehaviour
             deathSfx.Play();
 
         }
-
-        //  alienHurtTime = Time.time;
-        //  myAnim.SetBool("alienHurt", true);
-        // myRigidBody.velocity = Vector2.zero;
-        // myRigidBody.AddForce(transform.up * alineJumpForce);
-        //myCollider.enabled = false;
 
     }
         }

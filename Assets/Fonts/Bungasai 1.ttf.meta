@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9a7012f0981d6214a8e053b14501637e
+timeCreated: 1482087273
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bungasai
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b4c8462fc9a1f2445999ba279526a077, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

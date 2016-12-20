@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b4c8462fc9a1f2445999ba279526a077
-timeCreated: 1478212059
+guid: ca34cd055736938489b56c3865548281
+timeCreated: 1482088265
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -10,7 +10,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Bungasai
+  - Spirax
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

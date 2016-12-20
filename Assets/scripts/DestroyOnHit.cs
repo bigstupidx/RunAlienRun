@@ -16,8 +16,6 @@ public class DestroyOnHit : MonoBehaviour
     {
         if (transform.position.x < platformDestructionPoint.transform.position.x)
         {
-            //Destroy(gameObject);
-
               gameObject.SetActive(false);
         }
     }

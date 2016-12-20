@@ -7,13 +7,13 @@ public class DeathMenu : MonoBehaviour {
 
     public void ExitToMenu()
     {
-        // Reload the level
-        Application.LoadLevel("Tittle");
+
+       SceneManager.LoadScene("Title");
     }
 
     public void RestartGame()
     {
-        Application.LoadLevel("Game");
+        SceneManager.LoadScene("Game");
     }
 
 }
